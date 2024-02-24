@@ -1,3 +1,8 @@
+body{
+    /* background-color: rgb(116, 202, 202); */
+    background-color: rgb(84, 162, 162);
+
+}
 .todo{
     /* width: 100%; */
     /* border: 2px solid; */
@@ -7,7 +12,7 @@
     display: flex;
     justify-content: center;
     align-items: center !important;
-    border: 2px solid;
+    /* border: 2px solid; */
     height: 100%;
     width: 100%;
 }
@@ -43,7 +48,11 @@
 .todo .input .addTodo{
     width: 200px;
     margin-left: 10px;
-    background-color: #007bff;
+    /* background-color: #007bff; */
+    background-color: rgb(116, 202, 202);
+
+    /* background-color: rgb(84, 162, 162); */
+
     color: white;
     font-weight: 600;
 
@@ -69,8 +78,13 @@
     position: relative;
     top: 20px;
     overflow: auto;
-    border: 2px solid;
-    background-color: aqua;
+    /* border: 2px solid; */
+    /* background-color: rgb(84, 162, 162); */
+    /* background-color: rgb(56, 130, 130); */
+    background-color: rgb(53, 109, 109);
+    /* background-color: rgb(121, 187, 187); */
+    /* background-color: rgb(116, 202, 202); */
+    /* box-shadow: 0px 0px 10px; */
 }
 .show .showTodos{
     margin: auto;
@@ -80,10 +94,14 @@
     align-items: center;
     margin-top: 10px;
     gap: 20px !important;
-    background-color: white;
-    /* background-color: rgb(246, 238, 238); */
+    background-color: rgb(121, 187, 187);
     padding: 0 15px;
     border-radius: 20px;
+}
+.show .showTodos p{
+    font-size: 17px;
+    font-weight: 600;
+    color: white;
 }
 .show .showTodos .buttns button{
     gap: 20px !important;
@@ -94,14 +112,12 @@
     border-radius: 50%;
     border: none;
     font-size: 18px;
-    color: lightgreen;
+    color: rgb(53, 109, 109);
     margin-right: 10px;
-    background-color: white;
+    background-color: transparent;
 }
 .show .showTodos .buttns #edit:hover{
-    /* background-color: rgba(157, 221, 62, 0.736); */
-    background-color: rgb(148, 213, 52);
-    border:2px solid lightgrey;
+    background-color: rgb(84, 162, 162);
     opacity: 0.5;
 }
 .show .showTodos .buttns #delete{
@@ -111,7 +127,7 @@
     border: none;
     font-size: 18px;
     color: red;
-    background-color: white;
+    background-color: transparent;
 
     /* margin-right: 10px; */
 }
@@ -136,33 +152,35 @@
 
 /* ====================================================== */
 
-.popup {
+.hiddenPopup{
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.5); /* semi-transparent background */
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
-  }
-  
-  .popup-content {
-    padding: 40px;
+    background: rgba(0, 0, 0, 0.5);
+
+}
+.hiddenPopup .mainHiddenPopup{
     width: 30%;
     height: 40%;
     background: white;
-    /* padding: 20px; */
-    border-radius: 20px;
-    text-align: center;
-    /* border: 2px solid; */
-
-  }
-  
-  .popup button {
-    margin-top: 25px;
+    border-radius: 18px;
+    padding: 30px 30px;
+}
+.hiddenPopup .mainHiddenPopup .buttons{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 35px;
+    gap: 0px 20px;
+}
+.hiddenPopup .mainHiddenPopup .buttons button{
     padding: 8px 16px;
     background-color: #007bff;
     color: white;
@@ -170,12 +188,9 @@
     border-radius: 4px;
     cursor: pointer;
     width: 100px;
-    gap: 10px 0px;
+}
 
-  }
-  .popup .bttn{
-    gap: 10px 0px;
-  }
+
 
   @media (min-width:0px) and (max-width:480px) {
     .todo .input .getInputs {
@@ -185,10 +200,13 @@
         padding: 0px 10px;
     }
     .todo .input .getInputs input{
-        width: 200px;
+        width: 100%;
     }
     .todo .input button p{
         display: none;
+    }
+    .todo .input .getInputs button{
+        width: 40px;
     }
     .show{
         padding: 0px 20px;
@@ -196,19 +214,45 @@
     .show .showTodos{
         width: 100%;
     }
-    .popup .popup-content{
+    .hiddenPopup .mainHiddenPopup{
+        width: 80%;
+    }
+    
+  }
+  @media (min-width:481px) and (max-width:780px) {
+    .todo .input .getInputs{
         width: 70%;
-        height: 350px;
-        padding: 20px;
     }
-    .popup .popup-content h2{
-        padding: 0px;
+    .todo .input .getInputs input{
+        width: 100%;
     }
-    .popup .popup-content .input{
-        position: relative;
-        bottom: 100px;
+    .show .showTodos{
+        width: 60%;
     }
-    .popup button {
-        margin-top: 0px;
+    .hiddenPopup .mainHiddenPopup{
+        width: 80%;
+    }
+    
+    
+  }
+  @media (min-width:481px) and (max-width:1400px) {
+    .todo .input button i{
+        font-size: 14px;
+    }
+    .todo .input button p{
+        font-size: 14px;
+    }
+    
+    
+  }
+  @media (min-width:780px) and (max-width:1400px) {
+    .show .showTodos{
+        width: 60%;
+    }
+    
+  }
+  @media (min-width:781px) and (max-width:1400px) {
+    .hiddenPopup .mainHiddenPopup{
+        width: 40%;
     }
   }

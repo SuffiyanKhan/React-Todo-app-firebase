@@ -22,9 +22,7 @@ export default function Signup() {
     console.log(errMessage)
     // ..
   });
-    // console.log(value)
   }
-  // email,password,full name,phone number
 
 
   return (

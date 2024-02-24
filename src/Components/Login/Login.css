@@ -1,0 +1,82 @@
+Form{
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+    height: 100vh;
+}
+Form .form{
+    border: 2px solid;
+    width: 45%;
+    height: 500px;
+    padding: 30px 40px;
+    border-radius: 25px;
+}
+Form .form h2{
+    text-align: center;
+}
+Form .form .inputs{
+position: relative;
+top: 30px;
+}
+Form .form .checkBox{
+position: relative;
+top: 30px;
+}
+
+Form .form .buttons{
+    position: relative;
+    top: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+}
+Form .form .buttons .login{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+Form .form .buttons .login button{
+    position: relative;
+    top: 10px;
+}
+Form .form .buttons .loginWithGoogle{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+Form .form .buttons .loginWithGoogle button{
+    position: relative;
+    top: 10px;
+}
+Form .form .para{
+    position: relative;
+    top: 60px;
+    display: flex;
+    justify-content: center;
+}
+@media (min-width:0px) and (max-width:359px) {
+    Form .form{
+        width: 100%;
+        height: 100%;
+    }
+}
+ 
+@media (min-width:360px) and (max-width:579px) {
+    Form .form{
+        height: 540px;
+        width: 90%;
+    }
+}
+@media (min-width:579px) and (max-width:782px) {
+    Form .form{
+        height: 540px;
+        width: 70%;
+    }
+}

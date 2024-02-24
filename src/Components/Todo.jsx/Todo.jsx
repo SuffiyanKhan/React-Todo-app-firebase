@@ -126,27 +126,17 @@ export default function Todo() {
 setPopupVisibility(true);
 setEditId(id)
   }
-
-
-  // const showPopup = () => {
-  //   setPopupVisibility(true);
-  // };
+ 
 
   let updateTodos=(e)=>{
     setUpdateTodoInput(e.target.value)
   }
   const hidePopup = async() => {
     updateEditTodo()
-//     const washingtonRef = doc(db, userId, editId);
-// await updateDoc(washingtonRef, {
-// Todo: updateTodoInput,
-//     // Date: new Date().toDateString(),
-//     // Time: new Date().toTimeString()
-// });
-// setPopupVisibility(false);
+ 
 };
   let updateEditTodo=async()=>{
-    if (!getinput.trim()) {
+    if (!updateTodoInput.trim()) {
       Swal.fire({
         position: "center",
         icon: "warning",
@@ -160,8 +150,7 @@ setEditId(id)
       const washingtonRef = doc(db, userId, editId);
 await updateDoc(washingtonRef, {
 Todo: updateTodoInput,
-    // Date: new Date().toDateString(),
-    // Time: new Date().toTimeString()
+     
 });
 setPopupVisibility(false);
     }
@@ -210,38 +199,20 @@ setPopupVisibility(false);
           )
         }
       </div>
-      {/* <div id="popup">
-        <span>
-            <h2 contenteditable="true">Your profile</h2>
-        </span>
-        
-        <span class="suf">
-            <button  id="save">Log out</button>
-            <button  id="update">Close</button>
-        </span>
-
-    </div> */}
-    {/* <button onClick={showPopup}>Show Popup</button> */}
-
-      {/* {isPopupVisible && (
-        <div className="popup">
-          <p>This is your hidden popup content.</p>
-          <button onClick={hidePopup}>Close Popup</button>
-        </div>
-      )} */}
+       
       {isPopupVisible && (
-        <div className="popup">
-          <div className="popup-content">
-            <h2>Edit todo</h2>
-            <div className="input">
+        <div className="hiddenPopup">
+        <div className="mainHiddenPopup">
+          <h2>Update todo</h2>
+          <div className="getinput">
             <input className='form-control' onChange={updateTodos} placeholder='Enter new value' type="text" />
-            </div>
-            <div className="bttn">
+          </div>
+          <div className="buttons">
             <button onClick={hidePopup}><i className="fa-regular fa-pen-to-square"></i> Edit</button>
             <button onClick={closePopup}>Close</button>
-            </div>
-            {/* <p>This is your hidden popup content.</p> */}
           </div>
+
+        </div>
         </div>
       )}
 

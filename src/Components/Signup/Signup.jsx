@@ -1,6 +1,7 @@
 import React from 'react';
 import { Button, Checkbox, Form, Input } from 'antd';
 import { Link } from 'react-router-dom';
+import './Signup.css'
 const onFinishFailed = (errorInfo) => {
   console.log('Failed:', errorInfo);
 };
@@ -14,7 +15,10 @@ const AppSignup = ({data}) => (
     onFinishFailed={onFinishFailed}
     autoComplete="off"
   >
-    <h1>Sign up</h1>
+    <div className="signupForm">
+
+    <h2>Sign up</h2>
+    <div className="signupInputs">
     <Form.Item
       label="Full Name"
       name="full name"
@@ -64,31 +68,30 @@ const AppSignup = ({data}) => (
     >
       <Input />
     </Form.Item>
-    <Form.Item
-      name="remember"
-      valuePropName="checked"
-      >
-      <Checkbox>Remember me</Checkbox>
-    </Form.Item>
-
-    <Form.Item>
-    <div className="signup">
-      <Button type="primary" htmlType="submit">
-        Login
-      </Button>
     </div>
-    </Form.Item>
+<div className="signupButtons">
+
+    <div className="signup">
     <Form.Item>
-      <div className="signupWithGoogle"></div>
+      <Button type="primary" htmlType="submit">
+        Sign up
+      </Button>
+    </Form.Item>
+    </div>
+      <div className="signupWithGoogle">
+    <Form.Item>
       <Button>
         Sign up with Google
       </Button>
     </Form.Item>
-    <Form.Item>
-      <div className="para">
-        <p>I have already an account ? <Link to={'/'}>Login</Link></p>
       </div>
+</div>
+      <div className="paras">
+    <Form.Item>
+        <p>I have already an account ? <Link to={'/'}>Login</Link></p>
     </Form.Item>
+      </div>
+    </div>
   </Form>
 );
 export default AppSignup;

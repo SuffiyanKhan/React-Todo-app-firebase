@@ -1,7 +1,37 @@
-h2{
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+header{
+    width: 100%;
+    display: flex;
+}
+header .heading{
+    width: 93%;
+}
+header .heading h2{
     text-align: center;
     margin-top: 15px;
     padding-bottom: 20px;
     font-style: italic;
+    color: white;
+    font-weight: 800;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     
+}
+header .icon{
+    width: 7%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 25px;
+
+}
+header .icon i{
+    font-size: 20px;
+    color: white;
+    cursor: pointer;
 }

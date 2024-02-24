@@ -1,53 +1,66 @@
 
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import Todo from '../Todo.jsx/Todo';
 import './Home.css'
-// import { auth, deleteUser, onSnapshot, doc, db, onAuthStateChanged, getDoc } from '../../Config/fireBaseConfig'
-// import { useNavigate } from 'react-router-dom'
+import { auth, onAuthStateChanged } from '../../Config/fireBaseConfig'
+import { useNavigate } from 'react-router-dom'
+import Swal from 'sweetalert2'
 
 export default function AppHome() {
-//   const navigate = useNavigate();
-//   const [users, setUser] = useState('');
+  const navigate = useNavigate();
 
-//   useEffect(() => {
-//     const fetchUserData = async () => {
-//       try {
-//         const user = auth.currentUser;
-//         if (user) {
-//           const uid = user.uid;
-//           setUser(uid);
-//           const unsub = onSnapshot(doc(db, "Users", uid), (doc) => {
-//             console.log("Current data: ", doc.data());
-//         });
-        
-//         }
-//       } catch (error) {
-//         console.error("Error fetching user data:", error);
-//       }
-//     };
+  useEffect(() => {
+   
 
-//     onAuthStateChanged(auth, (user) => {
-//       if (user) {
-//         fetchUserData();
-//       } else {
-//         // Handle the case when the user is not authenticated
-//       }
-//     });
-//   }, []);
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        const user = auth.currentUser;
+        const uid = user.uid
+      } else {
+        navigate('/')
+      }
+    });
+  }, []);
 
-//   const handleLogout = () => {
-//     deleteUser(auth.currentUser)
-//       .then(() => {
-//         console.log('Successfully logged out');
-//       })
-//       .catch((error) => {
-//         console.error('Error logging out:', error);
-//       });
-//   };
+
+let logout=()=>{
+  Swal.fire({
+    title: "Are you sure?",
+    text: "You won't be able to revert this!",
+    icon: "warning",
+    showCancelButton: true,
+    confirmButtonColor: "#3085d6",
+    cancelButtonColor: "#d33",
+    confirmButtonText: "Yes, Logout !"
+  }).then((result) => {
+    if (result.isConfirmed) {
+      Swal.fire({
+        title: "Log out!",
+        icon: "success"
+      }).then(async(result) => {
+        if(result){
+           auth.signOut().then(() => {
+    window.location.reload()
+    navigate('/')
+    console.log('successfully')
+  })
+        }
+      })
+    }
+  });    
+  
+}
 
   return (
     <div>
-      <h2>Todo</h2>
+      <header>
+        <div className="heading">
+          <h2>Todo List</h2>
+        </div>
+        <div className="icon">
+        <i class="fa-solid fa-right-from-bracket" onClick={logout}></i>
+        </div>
+      </header>
       <Todo/>
     </div>
   );

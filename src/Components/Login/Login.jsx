@@ -1,4 +1,5 @@
 import React from 'react';
+import "./Login.css"
 import { Button, Checkbox, Form, Input } from 'antd';
 import { Link } from 'react-router-dom';
 import { auth, GoogleAuthProvider, signInWithPopup, sendEmailVerification, setDoc, doc, db } from '../../Config/fireBaseConfig';
@@ -49,7 +50,10 @@ const AppLogin = ({data}) => (
     onFinishFailed={onFinishFailed}
     autoComplete="off"
   >
-    <h1>Login</h1>
+    <div className="form">
+    <h2>Login</h2>
+
+<div className="inputs">
     <Form.Item
       label="Email"
       name="email"
@@ -75,32 +79,40 @@ const AppLogin = ({data}) => (
     >
       <Input.Password />
     </Form.Item>
+</div>
 
+<div className="checkBox">
     <Form.Item
       name="remember"
       valuePropName="checked"
       >
       <Checkbox>Remember me</Checkbox>
     </Form.Item>
+</div>
 
-    <Form.Item>
+    <div className="buttons">
     <div className="login">
+    <Form.Item>
       <Button type="primary" htmlType="submit">
         Login
       </Button>
-    </div>
     </Form.Item>
+    </div>
+    <div className="loginWithGoogle">
     <Form.Item>
-      <div className="loginWithGoogle"></div>
       <Button onClick={loginWithGoogle}>
         Login with Google
       </Button>
     </Form.Item>
-    <Form.Item>
-      <div className="para">
+    </div>
+    </div>
+
+    <div className="para">
+      <Form.Item>
         <p>I have no  account ? <Link to={'/signup'}>Signup</Link></p>
-      </div>
-    </Form.Item>
+      </Form.Item>
+    </div>
+    </div>
   </Form>
 );
 export default AppLogin;
