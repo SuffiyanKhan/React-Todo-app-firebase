@@ -1,10 +1,58 @@
 import React from 'react';
 import { Button, Checkbox, Form, Input } from 'antd';
 import { Link } from 'react-router-dom';
+import Swal from 'sweetalert2'
+import { auth, GoogleAuthProvider, signInWithPopup, sendEmailVerification, setDoc, doc, db } from '../../Config/fireBaseConfig';
 import './Signup.css'
 const onFinishFailed = (errorInfo) => {
   console.log('Failed:', errorInfo);
 };
+let signupWithGoogle =()=>{
+  const provider = new GoogleAuthProvider();
+  signInWithPopup(auth, provider)
+  .then(async(result) => {
+    // This gives you a Google Access Token. You can use it to access the Google API.
+    const credential = GoogleAuthProvider.credentialFromResult(result);
+    const token = credential.accessToken;
+    // The signed-in user info.
+    const user = result.user;
+    await setDoc(doc(db, "Users", user.uid), {
+      Name: user.displayName,
+      Email: user.email,
+      Phone_Number: user.phoneNumber,
+      userId: user.uid
+    });
+    
+    
+    sendEmailVerification(auth.currentUser)
+  .then(() => {
+    const Toast = Swal.mixin({
+      toast: true,
+      position: "top-end",
+      showConfirmButton: false,
+      timer: 3000,
+      timerProgressBar: true,
+      didOpen: (toast) => {
+        toast.onmouseenter = Swal.stopTimer;
+        toast.onmouseleave = Swal.resumeTimer;
+      }
+    });
+    Toast.fire({
+      icon: "success",
+      title: "Email Verification is successfully"
+    });
+  });
+  }).catch((error) => {
+    const errorCode = error.code;
+    const errorMessage = errorCode.slice(5).toUpperCase();
+    const errMessage = errorMessage.replace(/-/g, " ");
+    Swal.fire({
+      title: "Error!",
+      text: errMessage + " " + "!",
+      icon: "error"
+    });
+  });
+}
 const AppSignup = ({data}) => (
   <Form
     name="basic"
@@ -80,7 +128,7 @@ const AppSignup = ({data}) => (
     </div>
       <div className="signupWithGoogle">
     <Form.Item>
-      <Button>
+      <Button onClick={signupWithGoogle} >
         Sign up with Google
       </Button>
     </Form.Item>

@@ -2,6 +2,7 @@ import React from 'react';
 import "./Login.css"
 import { Button, Checkbox, Form, Input } from 'antd';
 import { Link } from 'react-router-dom';
+import Swal from 'sweetalert2'
 import { auth, GoogleAuthProvider, signInWithPopup, sendEmailVerification, setDoc, doc, db } from '../../Config/fireBaseConfig';
 const onFinishFailed = (errorInfo) => {
   console.log('Failed:', errorInfo);
@@ -24,19 +25,34 @@ let loginWithGoogle =()=>{
     
     
     sendEmailVerification(auth.currentUser)
-  .then(() => {
-    // Email verification sent!
-    // ...
-  });
-    console.log(user)
-    // IdP data available using getAdditionalUserInfo(result)
-    // ...displayName,email,phoneNumber,uid
-  }).catch((error) => {
-    const errorCode = error.code;
-    const errorMessage = errorCode.slice(5).toUpperCase();
-    const errMessage = errorMessage.replace(/-/g, " ");
-    console.log(errMessage)
-  });
+    .then(() => {
+      const Toast = Swal.mixin({
+        toast: true,
+        position: "top-end",
+        showConfirmButton: false,
+        timer: 3000,
+        timerProgressBar: true,
+        didOpen: (toast) => {
+          toast.onmouseenter = Swal.stopTimer;
+          toast.onmouseleave = Swal.resumeTimer;
+        }
+      });
+      Toast.fire({
+        icon: "success",
+        title: "Email Verification is successfully"
+      });
+    });
+    }).catch((error) => {
+      const errorCode = error.code;
+      const errorMessage = errorCode.slice(5).toUpperCase();
+      const errMessage = errorMessage.replace(/-/g, " ");
+      Swal.fire({
+        title: "Error!",
+        text: errMessage + " " + "!",
+        icon: "error"
+      });
+    });
+  
 
   console.log('hi')
 }
